@@ -2,18 +2,7 @@ package ru.ddc.springwebservice.models;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import ru.ddc.springwebservice.dto.Currency;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Entity
-@Table(name="country")
 public class CountryEntity {
 
     @Id
@@ -32,5 +21,67 @@ public class CountryEntity {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "currency", length = 3)
-    private Currency currency;
+    private CurrencyEntity currency;
+
+    public CountryEntity() {
+    }
+
+    public CountryEntity(long id, String name, int population, String capital, CurrencyEntity currency) {
+        this.id = id;
+        this.name = name;
+        this.population = population;
+        this.capital = capital;
+        this.currency = currency;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public String getCapital() {
+        return capital;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
+
+    public CurrencyEntity getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(CurrencyEntity currency) {
+        this.currency = currency;
+    }
+
+    @Override
+    public String toString() {
+        return "CountryEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", population=" + population +
+                ", capital='" + capital + '\'' +
+                ", currency=" + currency +
+                '}';
+    }
 }

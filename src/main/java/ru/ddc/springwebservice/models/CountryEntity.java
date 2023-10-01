@@ -30,6 +30,7 @@ public class CountryEntity {
     @Column(name="capital")
     private String capital;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "currency", length = 3)
     private Currency currency;
 }

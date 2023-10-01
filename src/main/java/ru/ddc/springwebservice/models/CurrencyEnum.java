@@ -1,6 +1,6 @@
 package ru.ddc.springwebservice.models;
 
-public enum CurrencyEntity {
+public enum CurrencyEnum {
     GBR,
     EUR,
     PLN;

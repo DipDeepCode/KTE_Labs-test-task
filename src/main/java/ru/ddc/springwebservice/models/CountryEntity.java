@@ -3,6 +3,8 @@ package ru.ddc.springwebservice.models;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table(name = "country")
 public class CountryEntity {
 
     @Id
@@ -21,12 +23,12 @@ public class CountryEntity {
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "currency", length = 3)
-    private CurrencyEntity currency;
+    private CurrencyEnum currency;
 
     public CountryEntity() {
     }
 
-    public CountryEntity(long id, String name, int population, String capital, CurrencyEntity currency) {
+    public CountryEntity(long id, String name, int population, String capital, CurrencyEnum currency) {
         this.id = id;
         this.name = name;
         this.population = population;
@@ -66,11 +68,11 @@ public class CountryEntity {
         this.capital = capital;
     }
 
-    public CurrencyEntity getCurrency() {
+    public CurrencyEnum getCurrency() {
         return currency;
     }
 
-    public void setCurrency(CurrencyEntity currency) {
+    public void setCurrency(CurrencyEnum currency) {
         this.currency = currency;
     }
 

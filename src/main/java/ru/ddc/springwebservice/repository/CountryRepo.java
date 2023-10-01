@@ -1,15 +1,8 @@
 package ru.ddc.springwebservice.repository;
 
-import ru.ddc.springwebservice.models.Country;
+import org.springframework.data.jpa.repository.JpaRepository;
+import ru.ddc.springwebservice.models.CountryEntity;
 
-import java.util.List;
-import java.util.Optional;
-
-public interface CountryRepo {
-
-    Optional<Country> getCountryById(long id);
-    List<Country> findAll();
-    Optional<Country> getCountryByName(String name);
-
+public interface CountryRepo extends JpaRepository<CountryEntity, Long> {
 
 }

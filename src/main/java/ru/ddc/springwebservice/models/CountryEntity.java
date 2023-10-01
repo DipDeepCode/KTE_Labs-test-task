@@ -14,7 +14,7 @@ import ru.ddc.springwebservice.dto.Currency;
 @Builder
 @Entity
 @Table(name="country")
-public class Country {
+public class CountryEntity {
 
     @Id
     @Column(name="id")

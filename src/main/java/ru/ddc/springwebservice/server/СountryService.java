@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.ddc.springwebservice.models.CountryEntity;
 import ru.ddc.springwebservice.repository.CountryRepository;
 
-import java.util.Optional;
-
 @Service
 public class СountryService {
 
@@ -18,8 +16,9 @@ public class СountryService {
         this.countryRepository = countryRepository;
     }
 
-    public Optional<CountryEntity> findByName(String name){
-        return countryRepository.findByName(name);
+    public CountryEntity findByName(String name){
+
+        return countryRepository.findByName(name).orElseThrow();
     }
 
 }

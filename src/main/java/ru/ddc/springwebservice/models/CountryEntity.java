@@ -2,7 +2,6 @@ package ru.ddc.springwebservice.models;
 
 
 import jakarta.persistence.*;
-import ru.ddc.springwebservice.dto.Country;
 
 @Entity
 @Table(name = "country")
@@ -25,8 +24,6 @@ public class CountryEntity {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "currency", length = 3)
     private CurrencyEnum currency;
-    @Transient
-    private Country country;
 
     public CountryEntity() {
     }
@@ -79,13 +76,6 @@ public class CountryEntity {
         this.currency = currency;
     }
 
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
 
     @Override
     public String toString() {

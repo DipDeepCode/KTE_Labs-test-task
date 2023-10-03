@@ -6,19 +6,18 @@ import ru.ddc.springwebservice.models.CountryEntity;
 import ru.ddc.springwebservice.repository.CountryRepository;
 
 @Service
-public class СountryService {
-
-    private CountryRepository countryRepository;
+public class CountryService {
+    private final CountryRepository countryRepository;
 
     @Autowired
-    public СountryService(CountryRepository countryRepository) {
-
+    public CountryService(CountryRepository countryRepository) {
         this.countryRepository = countryRepository;
     }
 
     public CountryEntity findByName(String name){
-
         return countryRepository.findByName(name).orElseThrow();
     }
 
 }
+
+

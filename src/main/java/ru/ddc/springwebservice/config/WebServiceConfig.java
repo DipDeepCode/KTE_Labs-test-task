@@ -1,6 +1,5 @@
 package ru.ddc.springwebservice.config;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;

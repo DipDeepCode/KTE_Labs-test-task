@@ -2,25 +2,37 @@ package ru.ddc.springwebservice.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "country")
 public class CountryEntity {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name= "name")
+    @NotEmpty(message = "Эта строка обязательна для заполнения")
+    @Size(min = 2, max = 30, message = "Имя должно содержать от 2 до 30")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="population")
+    @NotEmpty(message = "Эта строка обязательна для заполнения")
+    @Column(name = "population")
     private int population;
 
-    @Column(name="capital")
+    @NotEmpty(message = "Эта строка обязательна для заполнения")
+    @Size(min = 2, max = 30, message = "Имя должно содержать от 2 до 30")
+    @Column(name = "capital")
     private String capital;
 
+    @NotEmpty(message = "Эта строка обязательна для заполнения")
+    @Size(min = 3, max = 3, message = "Имя должно содержать 3 знака")
     @Enumerated(value = EnumType.STRING)
     @Column(name = "currency", length = 3)
     private CurrencyEnum currency;
@@ -76,6 +88,22 @@ public class CountryEntity {
         this.currency = currency;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CountryEntity that = (CountryEntity) o;
+        return id == that.id
+                && population == that.population
+                && Objects.equals(name, that.name)
+                && Objects.equals(capital, that.capital)
+                && currency == that.currency;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, population, capital, currency);
+    }
 
     @Override
     public String toString() {
@@ -87,4 +115,5 @@ public class CountryEntity {
                 ", currency=" + currency +
                 '}';
     }
+
 }

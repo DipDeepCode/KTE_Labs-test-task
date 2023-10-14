@@ -83,13 +83,42 @@
 
    <xs:complexType name="country">
     <xs:sequence>
-      <xs:element name="id" type="xs:long"/>
-      <xs:element name="name" type="xs:string"/>
-      <xs:element name="population" type="xs:int"/>
-      <xs:element name="capital" type="xs:string"/>
+        <xs:element name="id">
+            <xs:simpleType>
+                <xs:restriction base="xs:long">
+                    <xs:minInclusive value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="name">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="3"/>
+                    <xs:maxLength value="20"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="population">
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:pattern value="\d+"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+
+      <xs:element name="capital">
+          <xs:simpleType>
+              <xs:restriction base="xs:string">
+                  <xs:minLength value="3"/>
+                  <xs:maxLength value="20"/>
+              </xs:restriction>
+          </xs:simpleType>
+      </xs:element>
       <xs:element name="currency" type="tns:currency"/>
     </xs:sequence>
   </xs:complexType>
+
+
 
   <xs:simpleType name="currency">
     <xs:restriction base="xs:string">

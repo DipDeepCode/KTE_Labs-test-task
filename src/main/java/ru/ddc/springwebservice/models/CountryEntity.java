@@ -17,22 +17,15 @@ public class CountryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty(message = "Эта строка обязательна для заполнения")
-    @Size(min = 2, max = 30, message = "Имя должно содержать от 2 до 30")
     @Column(name = "name")
     private String name;
 
-    @NotEmpty(message = "Эта строка обязательна для заполнения")
     @Column(name = "population")
     private int population;
 
-    @NotEmpty(message = "Эта строка обязательна для заполнения")
-    @Size(min = 2, max = 30, message = "Имя должно содержать от 2 до 30")
     @Column(name = "capital")
     private String capital;
 
-    @NotEmpty(message = "Эта строка обязательна для заполнения")
-    @Size(min = 3, max = 3, message = "Имя должно содержать 3 знака")
     @Enumerated(value = EnumType.STRING)
     @Column(name = "currency", length = 3)
     private CurrencyEnum currency;

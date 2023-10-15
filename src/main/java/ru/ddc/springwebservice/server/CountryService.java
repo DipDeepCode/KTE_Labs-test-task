@@ -1,9 +1,12 @@
 package ru.ddc.springwebservice.server;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ddc.springwebservice.models.CountryEntity;
 import ru.ddc.springwebservice.repository.CountryRepository;
+
+import java.util.List;
 
 @Service
 public class CountryService {
@@ -23,28 +26,21 @@ public class CountryService {
         return countryRepository.findById(id).orElseThrow();
     }
 
+    @Transactional
     public CountryEntity save(CountryEntity countryEntity){
         return countryRepository.save(countryEntity);
     }
-
-    public String deleteById(long id) {
-        try {
-            countryRepository.deleteById(id);
-            return "Delete successful";
-        } catch (Exception e) {
-            return "Delete not successful";
-        }
+    @Transactional
+    public void deleteById(long id) {
+        countryRepository.deleteById(id);
     }
 
-    public String deleteByName(String name) {
-        try {
-            countryRepository.deleteByName(name);
-            return "Delete successful";
-        } catch(Exception e) {
-            return "Delete not successful";
-        }
+    @Transactional
+    public void deleteByName(String name) {
+        countryRepository.deleteByName(name);
     }
 
+    @Transactional
     public CountryEntity update(CountryEntity countryEntity) {
        return countryRepository.save(countryEntity);
 

@@ -25,9 +25,9 @@ public class CountryEndpoint {
         this.mapper = mapper;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryByNameRequest")
     @ResponsePayload
-    public GetCountryResponse getCountry(@RequestPayload GetCountryRequest request) {
+    public GetCountryResponse getCountryByName(@RequestPayload GetCountryByNameRequest request) {
         GetCountryResponse response = new GetCountryResponse();
         CountryEntity countryEntity = countryService.findByName(request.getName());
         Country country = convertToCountry(countryEntity);
@@ -48,7 +48,7 @@ public class CountryEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "addCountryRequest")
     @ResponsePayload
-    public AddCountryResponse getName(@RequestPayload AddCountryRequest request) {
+    public AddCountryResponse addCountryByName(@RequestPayload AddCountryRequest request) {
         AddCountryResponse response = new AddCountryResponse();
         Country country = request.getCountry();
         CountryEntity countryEntity = countryService.save(convertToCountryEntity(country));
@@ -58,21 +58,21 @@ public class CountryEndpoint {
         return response;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteCountryRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteCountryByIdRequest")
     @ResponsePayload
-    public DeleteCountryResponse deleteCountry(@RequestPayload DeleteCountryRequest request) {
+    public DeleteCountryResponse deleteCountryById(@RequestPayload DeleteCountryByIdRequest request) {
         DeleteCountryResponse response = new DeleteCountryResponse();
-        String str = countryService.deleteById(request.getId());
-        response.setDeleteCountry(str);
+        countryService.deleteById(request.getId());
+        response.setDeleteCountry("Delete Successful");
         return response;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteCountryRequestByName")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "deleteCountryByNameRequest")
     @ResponsePayload
-    public DeleteCountryResponse deleteCountryByName(@RequestPayload DeleteCountryRequestByName request) {
+    public DeleteCountryResponse deleteCountryByName(@RequestPayload DeleteCountryByNameRequest request) {
         DeleteCountryResponse response = new DeleteCountryResponse();
-        String str = countryService.deleteByName(request.getName());
-        response.setDeleteCountry(str);
+        countryService.deleteByName(request.getName());
+        response.setDeleteCountry("Delete Successful");
         return response;
     }
 
@@ -86,7 +86,6 @@ public class CountryEndpoint {
             countryEntity.setPopulation(request.getCountry().getPopulation());
             countryEntity.setName(request.getCountry().getName());
             countryEntity.setCapital(request.getCountry().getCapital());
-            countryEntity.setCurrency(convertToCurrencyEnum(request.getCountry().getCurrency()));
         }
         Country country = convertToCountry(countryEntity);
         response.setCountry(country);
@@ -101,13 +100,5 @@ public class CountryEndpoint {
     private CountryEntity convertToCountryEntity(Country country) {
         return mapper.map(country, CountryEntity.class);
     }
-
-    private CurrencyEnum convertToCurrencyEnum(Currency currency) {
-        return  mapper.map(currency, CurrencyEnum.class);
-    }
-
-
-
-
 
 }

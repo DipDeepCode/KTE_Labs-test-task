@@ -78,32 +78,5 @@ public class CountryEntity {
         this.currency = currency;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CountryEntity that = (CountryEntity) o;
-        return id == that.id
-                && population == that.population
-                && Objects.equals(name, that.name)
-                && Objects.equals(capital, that.capital)
-                && currency == that.currency;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, population, capital, currency);
-    }
-
-    @Override
-    public String toString() {
-        return "CountryEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", population=" + population +
-                ", capital='" + capital + '\'' +
-                ", currency=" + currency +
-                '}';
-    }
 
 }

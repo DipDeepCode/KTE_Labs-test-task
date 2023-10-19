@@ -78,7 +78,7 @@ public class CountryEndpoint {
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateCountryRequest")
     @ResponsePayload
-    public UpdateCountryResponse updateCountryResponse(@RequestPayload UpdateCountryRequest request) {
+    public UpdateCountryResponse updateCountry(@RequestPayload UpdateCountryRequest request) {
         UpdateCountryResponse response = new UpdateCountryResponse();
         CountryEntity countryEntity = countryService.update(convertToCountryEntity(request.getCountry()));
 
@@ -86,6 +86,7 @@ public class CountryEndpoint {
             countryEntity.setPopulation(request.getCountry().getPopulation());
             countryEntity.setName(request.getCountry().getName());
             countryEntity.setCapital(request.getCountry().getCapital());
+
         }
         Country country = convertToCountry(countryEntity);
         response.setCountry(country);

@@ -82,12 +82,12 @@ public class CountryEndpoint {
         UpdateCountryResponse response = new UpdateCountryResponse();
         CountryEntity countryEntity = countryService.update(convertToCountryEntity(request.getCountry()));
 
-        if(countryEntity.equals(request.getCountry())) {
-            countryEntity.setPopulation(request.getCountry().getPopulation());
-            countryEntity.setName(request.getCountry().getName());
-            countryEntity.setCapital(request.getCountry().getCapital());
-
-        }
+//        if(countryEntity.equals(request.getCountry())) {
+//            countryEntity.setPopulation(request.getCountry().getPopulation());
+//            countryEntity.setName(request.getCountry().getName());
+//            countryEntity.setCapital(request.getCountry().getCapital());
+//
+//        }
         Country country = convertToCountry(countryEntity);
         response.setCountry(country);
         return response;

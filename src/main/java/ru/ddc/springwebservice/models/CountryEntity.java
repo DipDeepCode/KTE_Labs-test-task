@@ -3,22 +3,24 @@ package ru.ddc.springwebservice.models;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "country")
 public class CountryEntity {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name= "name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="population")
+    @Column(name = "population")
     private int population;
 
-    @Column(name="capital")
+    @Column(name = "capital")
     private String capital;
 
     @Enumerated(value = EnumType.STRING)
@@ -77,14 +79,4 @@ public class CountryEntity {
     }
 
 
-    @Override
-    public String toString() {
-        return "CountryEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", population=" + population +
-                ", capital='" + capital + '\'' +
-                ", currency=" + currency +
-                '}';
-    }
 }

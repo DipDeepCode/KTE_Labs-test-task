@@ -3,9 +3,9 @@ package ru.ddc.springwebservice.models;
 public enum CurrencyEnum {
     GBP,
     EUR,
-    PLN;
-
-    public String value() {
+    PLN,
+    RUB;
+   public String value() {
         return name();
     }
 }

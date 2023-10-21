@@ -1,10 +1,18 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ddc.ru/springwebservice/dto"
            targetNamespace="http://ddc.ru/springwebservice/dto" elementFormDefault="qualified">
 
-  <xs:element name="getCountryRequest">
+  <xs:element name="getCountryByNameRequest">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="name" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getCountryByIdRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="id" type="xs:long"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -17,20 +25,107 @@
     </xs:complexType>
   </xs:element>
 
-  <xs:complexType name="country">
+  <xs:element name="addCountryRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="country" type="tns:country"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="addCountryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="deleteCountryByIdRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="id" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="deleteCountryByNameRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+    <xs:element name="deleteCountryResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deleteCountry" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+  <xs:element name="updateCountryRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="country" type="tns:country"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="updateCountryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="country" type="tns:country"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+   <xs:complexType name="country">
     <xs:sequence>
-      <xs:element name="name" type="xs:string"/>
-      <xs:element name="population" type="xs:int"/>
-      <xs:element name="capital" type="xs:string"/>
+        <xs:element name="id">
+            <xs:simpleType>
+                <xs:restriction base="xs:long">
+                    <xs:minInclusive value="1"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="name">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="3"/>
+                    <xs:maxLength value="20"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+        <xs:element name="population">
+            <xs:simpleType>
+                <xs:restriction base="xs:int">
+                    <xs:pattern value="\d+"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:element>
+
+      <xs:element name="capital">
+          <xs:simpleType>
+              <xs:restriction base="xs:string">
+                  <xs:minLength value="3"/>
+                  <xs:maxLength value="20"/>
+              </xs:restriction>
+          </xs:simpleType>
+      </xs:element>
       <xs:element name="currency" type="tns:currency"/>
     </xs:sequence>
   </xs:complexType>
+
+
 
   <xs:simpleType name="currency">
     <xs:restriction base="xs:string">
       <xs:enumeration value="GBP"/>
       <xs:enumeration value="EUR"/>
       <xs:enumeration value="PLN"/>
+      <xs:enumeration value="RUB"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

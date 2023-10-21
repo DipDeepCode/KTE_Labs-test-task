@@ -5,8 +5,7 @@ public enum CurrencyEnum {
     EUR,
     PLN,
     RUB;
-
-    public String value() {
+   public String value() {
         return name();
     }
 }
